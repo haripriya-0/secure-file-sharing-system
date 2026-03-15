@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo-section">
+        <img src="assets/cloud-logo.gif" class="logo" alt="Logo">
+        <h1>Secure File Sharing</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="upload.html">Upload</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="index.html" onclick="logout()">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- DASHBOARD -->
+<div class="dashboard">
+
+    <!-- USER INFO -->
+    <div class="profile-card">
+        <h3>User Information</h3>
+
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+    </div>
+
+    <!-- FILE LIST -->
+    <div class="files-card">
+        <h3>Your Uploaded Files</h3>
+
+        <table>
+           <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Size</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="fileTable">
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

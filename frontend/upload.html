@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure File Sharing</title>
+<link rel="stylesheet" href="upload.css">
+</head>
+
+<body>
+<video autoplay muted loop playsinline class="bg-video">
+    <source src="assets/background.mp4" type="video/mp4">
+</video>
+<canvas id="particles"></canvas>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo-section">
+        <img src="assets/cloud-logo.gif" class="logo" alt="Secure Logo">
+        <h1>Secure File Sharing</h1>
+    </div>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <a href="#" onclick="handleSignin()">Sign In</a>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <h2 id="typing"></h2>
+    <p>
+        Our platform protects your documents using advanced encryption and controlled access.
+        Upload your data safely and experience privacy designed for the modern world.
+    </p>
+</section>
+
+<!-- UPLOAD -->
+<section class="upload-container">
+
+<div class="upload-box collapsed" id="dropArea">
+
+    <div class="scan-line"></div>
+
+    <!-- COLLAPSED VIEW -->
+    <div class="collapsed-content">
+        <h3>You're one step away from secure sharing.</h3>
+        <p>Drop your file and begin your privacy & protection journey with us.</p>
+    </div>
+
+    <!-- EXPANDED VIEW -->
+    <div class="expanded-content">
+
+        <h2>Secure Upload Portal</h2>
+
+        <!-- 🔹 UPLOAD GUIDELINES ADDED HERE -->
+        <div class="guidelines">
+            <h4>Upload Guidelines</h4>
+            <ul>
+                <li>Maximum file size: 50MB</li>
+                <li>Supported formats: PDF, JPG, PNG, MP4</li>
+                <li>Files are encrypted before upload</li>
+                <li>Only authorized users can access shared files</li>
+            </ul>
+        </div>
+
+        <input type="file" id="fileInput" hidden>
+        <button id="uploadBtn">Choose File</button>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <p id="fileName"></p>
+
+    </div>
+
+</div>
+
+</section>
+
+<script src="upload.js"></script>
+</body>
+</html>

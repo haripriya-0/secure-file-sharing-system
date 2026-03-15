@@ -1,0 +1,281 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* PARTICLES */
+#particles{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* NAVBAR */
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+animation:slideDown 1s ease;
+}
+
+@keyframes slideDown{
+from{transform:translateY(-100%);}
+to{transform:translateY(0);}
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+    filter: drop-shadow(0 0 6px rgba(56,189,248,0.6));
+}
+
+.logo-section{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.nav-links{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:white;
+}
+
+.nav-links a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+margin-top:70px;
+animation:fadeIn 2s ease;
+}
+
+.hero h2{
+font-size:34px;
+background:linear-gradient(90deg,#38bdf8,#0ea5e9,#38bdf8);
+background-size:200%;
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove{
+0%{background-position:0%;}
+100%{background-position:200%;}
+}
+
+.hero p{
+margin-top:15px;
+color:#cbd5e1;
+}
+
+/* UPLOAD BOX */
+.upload-container{
+display:flex;
+justify-content:center;
+margin-top:60px;
+}
+
+.upload-box{
+width:420px;
+border-radius:20px;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.1);
+position:relative;
+overflow:hidden;
+transition:all .45s ease;
+display:flex;
+flex-direction:column;
+align-items:center;
+text-align:center;
+padding:25px;
+}
+
+/* COLLAPSED */
+.collapsed{
+height:140px;
+justify-content:center;
+}
+
+.collapsed .expanded-content{
+display:none;
+}
+
+/* EXPANDED */
+.expanded{
+height:460px; /* slightly increased for better spacing */
+box-shadow:0 0 40px rgba(56,189,248,.5);
+justify-content:flex-start;
+padding-top:30px;
+}
+
+/* Add spacing inside expanded content */
+.expanded-content{
+margin-top:15px;   /* pushes content downward */
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:12px;          /* evenly spaced items */
+}
+
+/* Guidelines spacing */
+.guidelines{
+margin-top:10px;
+margin-bottom:10px;
+}
+
+/* Button alignment */
+#uploadBtn{
+margin-top:5px;
+}
+
+/* SCAN LINE */
+.scan-line{
+position:absolute;
+width:100%;
+height:2px;
+background:#38bdf8;
+top:0;
+animation:scan 3s linear infinite;
+opacity:.6;
+}
+
+@keyframes scan{
+0%{top:0;}
+100%{top:100%;}
+}
+
+/* GUIDELINES STYLE */
+.guidelines{
+background:rgba(255,255,255,0.04);
+padding:12px;
+border-radius:12px;
+margin-bottom:15px;
+width:100%;
+max-width:320px;
+}
+
+.guidelines h4{
+color:#38bdf8;
+margin-bottom:6px;
+font-size:14px;
+}
+
+.guidelines ul{
+list-style:none;
+font-size:13px;
+color:#cbd5e1;
+line-height:1.6;
+}
+
+/* BUTTON */
+#uploadBtn{
+margin-top:10px;
+padding:10px 22px;
+border:none;
+border-radius:10px;
+background:#38bdf8;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* PROGRESS BAR */
+.progress-container{
+width:100%;
+max-width:300px;
+height:6px;
+background:rgba(255,255,255,0.1);
+border-radius:10px;
+margin-top:15px;
+overflow:hidden;
+display:none;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#38bdf8;
+transition:width .3s;
+}
+
+#fileName{
+margin-top:12px;
+color:#94a3b8;
+font-size:14px;
+}
+/* ================= ERROR SHAKE ================= */
+
+@keyframes shakeError {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+    100% { transform: translateX(0); }
+}
+
+.error-shake {
+    animation: shakeError 0.4s ease;
+}
+
+/* ================= SUCCESS GLOW ================= */
+
+@keyframes successGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(56,189,248,0);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(56,189,248,0.9);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(56,189,248,0.4);
+    }
+}
+
+.success-glow {
+    animation: successGlow 1s ease forwards;
+}
+/* ================= BACKGROUND VIDEO ================= */
+
+.bg-video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+/* Dark overlay for readability */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(2,6,23,0.75);
+    z-index:-1;
+}

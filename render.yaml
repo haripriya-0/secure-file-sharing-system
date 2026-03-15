@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: secure-file-sharing-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn app:app
+    rootDir: backend

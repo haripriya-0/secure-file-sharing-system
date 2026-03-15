@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Secure File Preview</title>
+
+<style>
+
+body{
+font-family: Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:50px;
+}
+
+.container{
+background:#1e293b;
+padding:40px;
+border-radius:10px;
+width:500px;
+margin:auto;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.preview{
+background:#111827;
+padding:20px;
+margin-top:20px;
+border-radius:5px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Shared File</h2>
+
+<p id="fileName"></p>
+
+<div style="width:80%;margin:auto">
+
+<h3 id="fileName"></h3>
+
+<div style="text-align:center">
+
+<h2 id="fileName"></h2>
+
+<button onclick="openPreview()">View File</button>
+
+<button onclick="loginDownload()">
+Download (Login Required)
+</button>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
+
+let fileId = null;
+
+async function loadFile(){
+
+const res = await fetch(
+`https://secure-file-sharing-4k5x.onrender.com/shared-file/${token}`
+);
+
+const data = await res.json();
+
+if(res.ok){
+
+fileId = data.file_id;
+
+document.getElementById("fileName").innerText =
+data.file_name;
+
+}else{
+
+document.body.innerHTML =
+"<h2>Invalid or expired link</h2>";
+
+}
+
+}
+function openPreview(){
+
+window.open(
+`https://secure-file-sharing-4k5x.onrender.com/preview/${fileId}`,
+"_blank"
+);
+
+}
+async function loginDownload(){
+
+    const token = localStorage.getItem("token");
+
+    if(!token){
+
+        localStorage.setItem("pendingDownload", fileId);
+
+        window.location.href =
+        "login/login.html";
+
+        return;
+    }
+
+    const response = await fetch(
+        `https://secure-file-sharing-4k5x.onrender.com/secure-download/${fileId}`,
+        {
+            headers:{
+                "Authorization":"Bearer " + token
+            }
+        }
+    );
+
+    if(!response.ok){
+        alert("Download failed");
+        return;
+    }
+
+    const blob = await response.blob();
+
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "file";
+
+    document.body.appendChild(a);
+    a.click();
+
+    a.remove();
+}
+
+loadFile();
+
+</script>
+
+</body>
+
+</html>

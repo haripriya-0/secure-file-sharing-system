@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Register</title>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+    <!-- SAME CSS -->
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="grid-container" id="gridContainer"></div>
+
+<div class="login-container">
+
+    <div class="corner-decoration top-left"></div>
+    <div class="corner-decoration top-right"></div>
+    <div class="corner-decoration bottom-left"></div>
+    <div class="corner-decoration bottom-right"></div>
+
+    <!-- HEADER -->
+    <div class="header">
+        <div class="scan-line"></div>
+        <h1>REGISTER</h1>
+        <p class="status-text">Create Identity</p>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <form id="registerForm">
+
+        <!-- USERNAME -->
+        <div class="form-group">
+            <label class="form-label">User Name</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-user field-icon"></i>
+                <input id="reg_username" type="text" class="input-field" placeholder="Enter username" required>
+            </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+            <label class="form-label">Email Identification</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-envelope field-icon"></i>
+                <input id="reg_email" type="email" class ="input-field" placeholder="Enter email" required>
+            </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+            <label class="form-label">Security Code</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock field-icon"></i>
+                <input id="reg_password" type="password" class="input-field" placeholder="Create password" required>
+
+                <i class="fa-solid fa-eye toggle-icon"
+                    id="togglePassword"></i>
+            </div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="form-group">
+            <label class="form-label">Confirm Security Code</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock field-icon"></i>
+                <input type="password"
+                    class="input-field"
+                    placeholder="Confirm password" required>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            Create Account
+        </button>
+
+    </form>
+
+    <!-- DIVIDER -->
+    <div class="divider">
+        <span class="divider-text">ALTERNATIVE ACCESS</span>
+    </div>
+
+    <!-- SOCIAL LOGIN -->
+    <div class="social-grid">
+        <button class="social-button">
+            <i class="fa-brands fa-google"></i>
+        </button>
+        <button class="social-button">
+            <i class="fa-brands fa-github"></i>
+        </button>
+        <button class="social-button">
+            <i class="fa-brands fa-discord"></i>
+        </button>
+    </div>
+
+    <!-- LOGIN LINK -->
+    <div class="register-link">
+        <a href="login.html">← BACK TO LOGIN</a>
+    </div>
+
+</div>
+
+
+
+<script>
+document.getElementById("registerForm")
+.addEventListener("submit", async (e)=>{
+
+    e.preventDefault();
+
+    const username =
+        document.getElementById("reg_username").value;
+
+    const email =
+        document.getElementById("reg_email").value;
+
+    const password =
+        document.getElementById("reg_password").value;
+
+    const response = await fetch(
+        "https://secure-file-sharing-4k5x.onrender.com/register",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({username,email,password})
+        }
+    );
+
+    const data = await response.json();
+
+    if(response.ok){
+        alert("Account Created");
+        window.location.href="login.html";
+    }else{
+        alert(data.error);
+    }
+});
+</script>
+
+
+</body>
+</html>
